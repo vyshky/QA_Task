@@ -51,12 +51,11 @@ end;
 -- (от самой большой суммы до самой маленькой суммы)
 
 
-select customer.name AS name,customer.name AS phone, SUM(price) AS SUMM
+select concat(customer.name ,' ', customer.phone) AS "name phone", SUM(price) AS SUMM
 from customer
 join customer_orders on customer_orders.customer_id = customer.id
 join orders on orders.id = customer_orders.order_id
-where customer.name='Batman'
-GROUP BY customer.name
+GROUP BY "name phone"
 order by SUMM desc ;
 
 -- Предложение GROUP BY используется для определения групп выходных строк, к которым могут применяться агрегатные функции (COUNT, MIN, MAX, AVG и SUM)
